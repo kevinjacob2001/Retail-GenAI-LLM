@@ -2,7 +2,7 @@ import os
 import sys
 from pathlib import Path
 
-_ROOT = Path(__file__).resolve().parents[1]
+_ROOT = Path(__file__).resolve().parent
 
 try:
     from langchain_openai import ChatOpenAI
@@ -15,7 +15,7 @@ except ModuleNotFoundError:
     raise SystemExit(
         "Missing package 'langchain-openai'. From the project root run:\n"
         "  python3 -m venv .venv && .venv/bin/pip install -r requirements.txt\n"
-        "Then: .venv/bin/python chatgpt-client/gpt-client.py"
+        "Then: .venv/bin/python gpt_client.py"
     ) from None
 
 from dotenv import load_dotenv
@@ -43,14 +43,17 @@ def get_chat_llm(
 
 
 def generate_chatgpt_response(prompt: str, *, model: str = "gpt-4o-mini") -> str:
-    llm = get_chat_llm(model=model)
-    msg = llm.invoke(prompt)
+    llm_obj = get_chat_llm(model=model)
+    msg = llm_obj.invoke(prompt)
     content = msg.content
     if content is None:
         return ""
     if isinstance(content, str):
         return content.strip()
     return str(content).strip()
+
+
+llm = get_chat_llm(temperature=0, max_tokens=512)
 
 
 if __name__ == "__main__":
