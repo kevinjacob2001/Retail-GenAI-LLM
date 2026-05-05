@@ -56,8 +56,8 @@ def get_few_shot_db_chain() -> SQLDatabaseChain:
     )
 
 
-st.set_page_config(page_title="Retail SQL QA", page_icon="🛍️")
-st.title("Retail SQL QA")
+st.set_page_config(page_title="Retail GenAI Buddy", page_icon="🛍️")
+st.title("Retail GenAI Buddy")
 question = st.text_input("Ask a question")
 
 if st.button("Submit", type="primary"):
@@ -65,11 +65,12 @@ if st.button("Submit", type="primary"):
         st.warning("Please enter a question")
     else:
         try:
-            chain = get_few_shot_db_chain()
-            result = chain.invoke({"query": question})
-            raw = str(result.get("result", result))
-            match = re.search(r"Decimal\('([^']+)'\)|(-?\d+(?:\.\d+)?)", raw)
-            final_answer = (match.group(1) or match.group(2)) if match else raw
+            with st.spinner("Thinking..."):
+                chain = get_few_shot_db_chain()
+                result = chain.invoke({"query": question})
+                raw = str(result.get("result", result))
+                match = re.search(r"Decimal\('([^']+)'\)|(-?\d+(?:\.\d+)?)", raw)
+                final_answer = (match.group(1) or match.group(2)) if match else raw
             st.success(final_answer)
         except Exception as exc:  # noqa: BLE001
             st.error(f"Error: {exc}")

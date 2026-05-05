@@ -1,12 +1,13 @@
 # Retail GenAI LLM
 
-A basic project for querying a retail t-shirt inventory database using LangChain, OpenAI, and MySQL.
+A GenAI LLM project for querying a retail t-shirt inventory database using LangChain, OpenAI, and MySQL.
 
 ## Features
 
 - Natural language to SQL query flow
 - Few-shot prompting support
-- Streamlit frontend for asking questions
+- Streamlit frontend for asking questionsRetail SQL QA
+
 
 ## Project Structure
 
