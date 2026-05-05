@@ -2,6 +2,7 @@ import os
 import sys
 from pathlib import Path
 
+import httpx
 _ROOT = Path(__file__).resolve().parent
 
 try:
@@ -39,6 +40,9 @@ def get_chat_llm(
         temperature=temperature,
         max_completion_tokens=max_tokens,
         api_key=SecretStr(api_key),
+        # Ignore system proxy env vars to avoid local proxy 403 failures.
+        http_client=httpx.Client(trust_env=False),
+        http_async_client=httpx.AsyncClient(trust_env=False),
     )
 
 
