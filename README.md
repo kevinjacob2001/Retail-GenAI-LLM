@@ -42,6 +42,12 @@ If needed, update DB credentials in `frontend/main.py` to match your local MySQL
 - Start frontend app:
   - `streamlit run frontend/main.py`
 
+## Photos
+
+![p1](assets/p1.png)
+
+![p2](assets/p2.png)
+
 ## Sample Questions
 
 Try these in the Streamlit app:
