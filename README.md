@@ -42,6 +42,11 @@ If needed, update DB credentials in `frontend/main.py` to match your local MySQL
 - Start frontend app:
   - `streamlit run frontend/main.py`
 
+## System Design
+
+![SystemDesign](assets/SystemDesign.png)
+
+
 ## Flowchart
 
 ![flow_chart](assets/flow_chart.png)
