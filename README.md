@@ -6,7 +6,7 @@ A GenAI LLM project for querying a retail t-shirt inventory database using LangC
 
 - Natural language to SQL query flow
 - Few-shot prompting support
-- Streamlit frontend for asking questionsRetail SQL QA
+- Streamlit frontend for asking questions
 
 
 ## Project Structure
@@ -24,7 +24,28 @@ A GenAI LLM project for querying a retail t-shirt inventory database using LangC
 3. Add your API key in `.env`:
    - `OPENAI_API_KEY=...`
 
+## Database Setup
+
+This project includes a dummy MySQL dataset for local testing:
+
+- Script path: `database/db_creation_atliq_t_shirts.sql`
+- Database name used by the app: `atliq_tshirts`
+
+Load it into MySQL:
+
+- `mysql -u root -p < database/db_creation_atliq_t_shirts.sql`
+
+If needed, update DB credentials in `frontend/main.py` to match your local MySQL setup.
+
 ## Run
 
 - Start frontend app:
   - `streamlit run frontend/main.py`
+
+## Sample Questions
+
+Try these in the Streamlit app:
+
+- How many t-shirts do we have left for Nike in XS size and white color?
+- How many white color Levi's shirts do we have available?
+- How much is the total inventory value for all S-size t-shirts?
